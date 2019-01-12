@@ -1,0 +1,102 @@
+{
+	"home":{
+		"title":"Unnecessary Theories",
+		"description":"here are some theories, they're probably unnecessary",
+		"image":"https://www.unnecessarytheories.io/img/evolution_chalk_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	},
+	"meaning_god":{
+		"title":"Meaning of God",
+		"description":"the existence of god is irrelevant, but the meaning isn't",
+		"image":"https://www.unnecessarytheories.io/img/space_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	},
+	"prison":{
+		"title":"The Prison",
+		"description":"You're in a prison you can't see because you're distracted by all the writing on the wall.",
+		"image":"https://www.unnecessarytheories.io/img/prison_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	},
+	"intelligence":{
+		"title":"Intelligence",
+		"description":"How can we, as humans, be so intelligent when we can't define intelligence?",
+		"image":"https://www.unnecessarytheories.io/img/machine_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	},
+	"vase":{
+		"title":"Vase of the World",
+		"description":"Caution to you, when you create in order to relieve, you know not what you make",
+		"image":"https://www.unnecessarytheories.io/img/cavemen_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	},
+	"online_dating":{
+		"title":"Online Dating",
+		"description":"Online dating is not a fun activity, so I wrote some poetry about it.",
+		"image":"https://www.unnecessarytheories.io/img/online-date_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	},
+	"girl":{
+		"title":"Girl on Path",
+		"description":"I was lost in a world of my own thinking thoughts, then I came upon her, and she connected the dots.",
+		"image":"https://www.unnecessarytheories.io/img/girl_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	},
+	"contact":{
+		"title":"The Impossibility of Alien Contact",
+		"description":"The science fiction community has done our culture an immense disservice by making possible what is perfectly implausible",
+		"image":"https://www.unnecessarytheories.io/img/contact_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	},
+	"perspective":{
+		"title":"Perspective",
+		"description":"For the stone and the mote, the grass is always greener...",
+		"image":"https://www.unnecessarytheories.io/img/dust_thumb2.jpg",
+		"size":{
+			"width":"1080",
+			"height":"567"
+		}
+	},
+	"extraterrestrial_life":{
+		"title":"Extraterrestrial Life",
+		"description":"The differences between us an alien llife are most probably so basic and fundamental that they will make you question your own existence.",
+		"image":"https://www.unnecessarytheories.io/img/extraterrestrial-life5_thumb.jpg",
+		"size":{
+			"width":"1080",
+			"height":"567"
+		}
+	},
+	"evolution":{
+		"title":"Take the 'selection' out of Evolution",
+		"description":"There's no 'selection' in Evolution, you've been mislead, and now it's time to know what's more accurate",
+		"image":"https://www.unnecessarytheories.io/img/evolution2_thumb.jpg",
+		"size":{
+			"width":"1200",
+			"height":"630"
+		}
+	}
+
+}
