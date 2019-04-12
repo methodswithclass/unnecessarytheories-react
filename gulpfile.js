@@ -131,7 +131,7 @@ var injectJS = function () {
 										addRootSlash : true,
 										transform : function ( filePath, file, i, length ) {
 
-												var newPath = filePath.replace( 'dist/assets/', 'source/' );
+												var newPath = filePath.replace( 'dist/assets/', 'public/' );
 
 												console.log('inject js script =', newPath);
 
@@ -145,7 +145,7 @@ var injectJS = function () {
 										addRootSlash : true,
 										transform : function ( filePath, file, i, length ) {
 
-												var newPath = filePath.replace( 'dist/assets/', 'source/' )
+												var newPath = filePath.replace( 'dist/assets/', 'public/' )
 
 												if (filePath.indexOf("css") != -1) {
 													console.log('inject css script =', newPath);
@@ -361,12 +361,13 @@ var serveFunc = function (done) {
 
 	console.log("serve task");
 
-	// livereload.listen({port:config.livereloadPort});
+	livereload.listen({port:config.livereloadPort});
 
 	var stream = nodemon({
 		script: path.join(__dirname, "server.js"),
 		ext:"js html css scss json",
-		watch:["./src", "config.js", "./backend"]
+		watch:["./src", "config.js", "./backend"],
+		tasks:["build"]
 	});
 
 
@@ -380,7 +381,7 @@ var serveFunc = function (done) {
 		setTimeout(function () {
 
 			try {
-				// livereload.reload();
+				livereload.reload();
 			}
 			catch (err) {
 				console.log("cannot livreload at this time", err);

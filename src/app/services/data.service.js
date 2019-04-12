@@ -1,5 +1,7 @@
 
-
+import * as blog from "./models/blog.service";
+import * as file from "./file.service";
+import * as shared from "./shared.service";
 
 var testOverride = false;
 
@@ -11,6 +13,10 @@ var dev = {
 	id:'725062234262184'
 }
 
+
+
+
+
 var prod = {
 	test:false,
 	name:"unnecessary-blog",
@@ -20,9 +26,9 @@ var prod = {
 
 export var env = function (_test) {
 
-	console.log("location", $location.absUrl(), $location.absUrl() == prod.url);
+	console.log("location", window.location.href, window.location.href == prod.url);
 
-	return (_test !== undefined ? (_test ? dev : prod) : (testOverride ? dev : ($location.absUrl() == prod.url ? prod : dev)));
+	return (_test !== undefined ? (_test ? dev : prod) : (testOverride ? dev : (window.location.href == prod.url ? prod : dev)));
 }
 
 var genres = {
@@ -86,7 +92,7 @@ var allblogs = [];
 
 var writeBlog;
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2019, 0, 5, 6, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("sexuality");
@@ -105,7 +111,7 @@ allblogs.push(writeBlog);
 writeBlog = null;
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2016, 10, 15, 6, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("contact");
@@ -124,7 +130,7 @@ allblogs.push(writeBlog);
 writeBlog = null;
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2018, 2, 11, 12, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("evolution");
@@ -142,7 +148,7 @@ allblogs.push(writeBlog);
 writeBlog = null;
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2018, 0, 23, 12, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("extraterrestrial_life");
@@ -161,7 +167,7 @@ writeBlog = null;
 
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2016, 0, 7, 12, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("intelligence");
@@ -179,7 +185,7 @@ allblogs.push(writeBlog);
 writeBlog = null;
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2016, 7, 21, 6, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("vase");
@@ -198,7 +204,7 @@ writeBlog = null;
 
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2016, 9, 1, 6, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("online_dating");
@@ -217,7 +223,7 @@ writeBlog = null;
 
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2016, 9, 30, 6, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("girl");
@@ -235,7 +241,7 @@ allblogs.push(writeBlog);
 writeBlog = null;
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2016, 10, 16, 6, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("perspective");
@@ -254,7 +260,7 @@ writeBlog = null;
 
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2015, 11, 22, 12, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("prison");
@@ -273,7 +279,7 @@ writeBlog = null;
 
 
 
-writeBlog = new Blog();
+writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2016, 5,  1, 6, 0, 0));
 writeBlog.setBy("Christopher Polito");
 writeBlog.setName("meaning_god");
@@ -311,7 +317,10 @@ blogs.forEach(function (value, index, array) {
 
 	value.meta.index = index;
 
-	file.process(value.meta.file, function (blog) {
+	file.process("/" + value.meta.file, function (blog) {
+
+		console.log("file", value.meta.file, "blog", blog);
+
 		value.content = blog;
 	});
 
@@ -418,7 +427,7 @@ export var getButtonPosition = function (index) {
 
 	var cols = blogs.length <= 3 ? 2 : 3;
 	cols = 2;
-	cols = g.isMobile() ? 1 : cols;
+	cols = shared.g.isMobile() ? 1 : cols;
 	var rowsFrac = blogs.length/cols;
 	// var rows = rowsFrac % cols == 0 ? rowsFrac : rowsFrac + 1;
 	var rows = rowsFrac + 1;
@@ -432,5 +441,32 @@ export var getButtonPosition = function (index) {
 
 export var getGenres = function () {
 
-	return blogs;
+	var genresArray = [];
+	// genresArray[genres.genres.length] = [];
+
+	for (var j in genres.genres) {
+
+		genresArray[j] = [];
+
+		// for (var i in blogs) {
+
+		// 	if (blogs[i].meta.genre == genres.genres[j].id) {
+
+		// 		genresArray[j].push(blogs[i]);
+		// 	}
+		// 	else {
+
+		// 		// genresArray[genres.genres.length].push(blogs[i]);
+		// 	}
+
+		// }
+
+		var genre = getBlogsByGenre(genres.genres[j].id);
+
+		genresArray[j].push(genre);
+
+	}
+
+
+	return genresArray;
 }

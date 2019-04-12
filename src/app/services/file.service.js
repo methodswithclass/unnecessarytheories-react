@@ -1,3 +1,10 @@
+
+import * as $http from "./api.ws.service";
+import * as u from "./utility.service";
+
+var $ = u.jquery();
+
+
 var files = [];
 var blogs = [];
 
@@ -19,7 +26,7 @@ var make = function (string) {
 	for (var i in array) {
 		// console.log(array[i], array[i].match(/\./));
 		if (array[i].match(/\./) && array[i].match(/\./).index == 0) {
-			
+
 			blog[k++] = section;
 
 			section = [];
@@ -42,9 +49,24 @@ export var process = function (url, complete) {
 
 	console.log(url);
 
-	$http({url:url})
+	// $http({url:url})
+	// .then(function (response) {
+	// 	var data = response.data;
+	// 	var cleanData = clean(data);
+	// 	files[files.length] = cleanData;
+	// 	return cleanData;
+	// })
+	// .then(function (data) {
+	// 	var blog = make(data);
+	// 	blogs[blogs.length] = blog;
+	// 	return blog;
+	// })
+	// .then(complete);
+
+	$.ajax(url)
 	.then(function (response) {
-		var data = response.data;
+		var data = response;
+		// console.log("data", response, data);
 		var cleanData = clean(data);
 		files[files.length] = cleanData;
 		return cleanData;
@@ -55,5 +77,5 @@ export var process = function (url, complete) {
 		return blog;
 	})
 	.then(complete);
-	
+
 }

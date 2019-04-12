@@ -112,14 +112,14 @@ var processConfig = function (_key, resolve) {
 	var resultArray = [];
 
 	if (Array.isArray(_key)) {
-		
+
 		for (var i in _key) {
 
 			resultArray.push(getConfig(_key[i]));
 		}
 
 		return resolve(resultArray);
-		
+
 	}
 	else {
 
@@ -135,8 +135,8 @@ var retrieveConfig = function () {
 	return new Promise(function (resolve) {
 
 		if (!doesExist()) {
-   			
-   			$.ajax(url(), 
+
+   			$.ajax(url(),
    			{
    				method:"GET"
    			})
@@ -202,4 +202,4 @@ export var get = {
 	}
 }
 
-assignConfig();
+// assignConfig();

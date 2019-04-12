@@ -5,6 +5,16 @@ var refreshPages = [
 ]
 
 
+var env = process.env.NODE_ENV;
+
+
+var getEnv = function () {
+
+	console.log("env", env);
+
+	return env;
+}
+
 const forceSSL = function() {
 	return function (req, res, next) {
 		console.log("force https");
@@ -58,5 +68,6 @@ var accessControl = function () {
 module.exports = {
 	ssl:forceSSL,
 	refresh:refresh,
-	accessControl:accessControl
+	accessControl:accessControl,
+	getEnv:getEnv
 }
