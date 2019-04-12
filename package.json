@@ -93,7 +93,7 @@
 	},
 	"scripts": {
 		"start": "gulp serve",
-		"build": "react-scripts build",
+		"build": "npm install",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
