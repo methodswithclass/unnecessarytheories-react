@@ -74,7 +74,8 @@ var published = {
 	perspective:true,
 	extraterrestrial_life:true,
 	evolution:true,
-	sexuality:true
+	sexuality:true,
+	feast:true
 }
 
 var home = {
@@ -91,6 +92,26 @@ var home = {
 var allblogs = [];
 
 var writeBlog;
+
+
+writeBlog = new blog.Blog();
+writeBlog.setDate(new Date(2019, 3, 13, 6, 0, 0));
+writeBlog.setBy("Christopher Polito");
+writeBlog.setName("feast");
+writeBlog.setGenre(genres.nonFict);
+writeBlog.setShortTitle("There is a Heaven and there is a Hell, but we're all at the same table: Part I");
+writeBlog.setLongTitle("The allegories for Heaven and Hell are numerous, examining one and offering an alternative is just continuing the story for its own sake.");
+writeBlog.setShortTitleFont({button:{d:"font-30", m:"font-30"}});
+writeBlog.setImage("img/thefeast");
+writeBlog.setFile("files/thefeast_one.txt");
+writeBlog.setPublished(published.feast);
+writeBlog.setTwitter("Heaven and Hell can be understoon in many ways, if at all, here is one");
+writeBlog.setFacebook(env().url + genres.nonFict + "/feast");
+
+allblogs.push(writeBlog);
+
+writeBlog = null;
+
 
 writeBlog = new blog.Blog();
 writeBlog.setDate(new Date(2019, 0, 5, 6, 0, 0));
