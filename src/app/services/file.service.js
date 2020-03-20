@@ -1,5 +1,5 @@
 
-import * as $http from "./api.ws.service";
+import * as api from "./api.service";
 import * as u from "./utility.service";
 
 var $ = u.jquery();
@@ -45,7 +45,30 @@ var make = function (string) {
 	return blog;
 }
 
-export var process = function (url, complete) {
+export let getBlog = function (name) {
+
+	console.log("get api for blog", name);
+
+	return api.getBlog(name)
+	.then((res) => {
+
+		return res.data.blog;
+	})
+	.then(data => {
+
+		var blog = make(data);
+		blogs[blogs.length] = blog;
+		return blog;
+
+	})
+}
+
+let postBlog = (name, blog) => {
+
+	return api.postBlog(name, blog);
+}
+
+export var process = function (name, url, complete) {
 
 	console.log(url);
 
@@ -63,9 +86,19 @@ export var process = function (url, complete) {
 	// })
 	// .then(complete);
 
+
+
+
 	$.ajax(url)
 	.then(function (response) {
 		var data = response;
+
+		postBlog(name, data)
+		.then(res => {
+
+			console.log("post blog", res.data);
+		})
+
 		// console.log("data", response, data);
 		var cleanData = clean(data);
 		files[files.length] = cleanData;

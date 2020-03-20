@@ -6,504 +6,527 @@ import * as $input from "./input.service";
 import * as exception from "../misc/exception";
 
 
-export var getBest = function (callback) {
+export let postBlog = (name, blog) => {
 
-    var funcName = "getBest";
+	return http.post({
+		url:"/api/blogs/" + name,
+		data:{blog:blog}
+	})
+}
 
-    // try {
-   
-    	http.post({
-    		url:"/evolve/best",
-            data:{input:$input.getInput()}
-    	})
-    	.then(function (res) {
+export let getBlog = (blog) => {
 
-            if (typeof callback === "function")callback(res);
+	return http.get({
+		url:"/api/blogs/" + blog
+	})
+}
 
-        }, function (err) {
 
-            console.log("before throw Server error:", funcName,  err);
+export let getAllBlogs = () => {
 
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
+	return http.get({
+		url:"/api"
+	})
+}
 
-    // }
-    // catch (err) {
+// export var getBest = function (callback) {
 
-    //     console.log("Server error:", funcName, err)
-    // }
-    
-};
+//     var funcName = "getBest";
 
+//     // try {
 
-export var stepdata = function (callback) {
+//     	http.post({
+//     		url:"/evolve/best",
+//             data:{input:$input.getInput()}
+//     	})
+//     	.then(function (res) {
 
-    // console.log("call setpdata");
-  
-    var funcName = "stepdata";
+//             if (typeof callback === "function")callback(res);
 
-    // try {
+//         }, function (err) {
 
-    	http.post({
-    		url:"/evolve/stepdata",
-            data:{input:$input.getInput()}
-    	})
-    	.then(function (res) {
+//             console.log("before throw Server error:", funcName,  err);
 
-            // console.log("stepdata raw response", res);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
-            if (typeof callback === "function") callback(res);
+//     // }
+//     // catch (err) {
 
-        }, function (err) {
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
-            // console.log("Server error: 'stepdata'", err)
+// };
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
 
+// export var stepdata = function (callback) {
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
+//     // console.log("call setpdata");
 
-	};
+//     var funcName = "stepdata";
 
+//     // try {
 
-export var isRunning = function  (callback) {
+//     	http.post({
+//     		url:"/evolve/stepdata",
+//             data:{input:$input.getInput()}
+//     	})
+//     	.then(function (res) {
 
+//             // console.log("stepdata raw response", res);
 
-    var funcName = "isRunning";
+//             if (typeof callback === "function") callback(res);
 
-    // try {
+//         }, function (err) {
 
-    	http.post({
-    		url:"/evolve/running",
-            data:{input:$input.getInput()}
-    	})
-    	.then(function (res) {
+//             // console.log("Server error: 'stepdata'", err)
 
-            if (typeof callback === "function") callback(res);
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
-    	}, function (err) {
 
-    		// console.log("Server error: 'isRunning'", err)
+//     // }
+//     // catch (err) {
 
-            // return $q.reject(err);
-            throw err;
-    	})
-        .catch(exception.catcher("Server error:" + funcName));
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
+// 	};
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
 
-};
+// export var isRunning = function  (callback) {
 
 
-export var setInput = function (resend, callback) {
+//     var funcName = "isRunning";
 
-   
-    // console.log("setInput http call get input or resendInput");
+//     // try {
 
-    var funcName = "setInput";
+//     	http.post({
+//     		url:"/evolve/running",
+//             data:{input:$input.getInput()}
+//     	})
+//     	.then(function (res) {
 
-    // try {
+//             if (typeof callback === "function") callback(res);
 
-    	http.post({
-    		url:"/evolve/set",
-    		data:{input:resend ? $input.resendInput() : $input.getInput()}
-    	})
-    	.then(function (res) {
+//     	}, function (err) {
 
-            if (typeof callback === "function") callback(res);
+//     		// console.log("Server error: 'isRunning'", err)
 
-        }, function (err) {
+//             // return $q.reject(err);
+//             throw err;
+//     	})
+//         .catch(exception.catcher("Server error:" + funcName));
 
-            // console.log("Server error: 'setInput'", err)
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
+//     // }
+//     // catch (err) {
 
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
+// };
 
-	};
 
+// export var setInput = function (resend, callback) {
 
-export var instantiate = function (callback) {
 
+//     // console.log("setInput http call get input or resendInput");
 
-    var funcName = "instantiate";
+//     var funcName = "setInput";
 
-    // try {
+//     // try {
 
-        http.get({
-            url:"/evolve/instantiate"
-        })
-        .then(function (res) {
+//     	http.post({
+//     		url:"/evolve/set",
+//     		data:{input:resend ? $input.resendInput() : $input.getInput()}
+//     	})
+//     	.then(function (res) {
 
-            if (typeof callback === "function") callback(res);
+//             if (typeof callback === "function") callback(res);
 
-        }, function (err) {
+//         }, function (err) {
 
-            // console.log("Server error: 'instantiate'", err)
+//             // console.log("Server error: 'setInput'", err)
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
+//     // }
+//     // catch (err) {
 
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
-};
+// 	};
 
 
-export var initialize = function (callback) {
+// export var instantiate = function (callback) {
 
 
-    console.log("initialize http call get input");
+//     var funcName = "instantiate";
 
-    var funcName = "initialize";
+//     // try {
 
-    // try {
+//         http.get({
+//             url:"/evolve/instantiate"
+//         })
+//         .then(function (res) {
 
-        http.post({
-            url:"/evolve/initialize",
-            data:{input:$input.getInput()}
-        })
-        .then(function (res) {
+//             if (typeof callback === "function") callback(res);
 
-            if (typeof callback === "function") callback(res);
+//         }, function (err) {
 
-        }, function (err) {
+//             // console.log("Server error: 'instantiate'", err)
 
-            // console.log("Server error: 'initialize'", err)
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
 
+//     // }
+//     // catch (err) {
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
 
-};
+// };
 
 
-export var run = function (callback) {
+// export var initialize = function (callback) {
 
 
-    // console.log("run call input", $input.getInput(true));
+//     console.log("initialize http call get input");
 
-    var funcName = "run";
+//     var funcName = "initialize";
 
-    // try {
+//     // try {
 
-    	http.post({
-    		url:"/evolve/run", 
-    		data:{input:$input.getInput(true)}
-    	})
-    	.then(function (res) {
+//         http.post({
+//             url:"/evolve/initialize",
+//             data:{input:$input.getInput()}
+//         })
+//         .then(function (res) {
 
-            if (!res.data.success) {
+//             if (typeof callback === "function") callback(res);
 
-            	initialize(function () {
-            		
-            		run(function  () {
-            			if (typeof callback === "function") callback(res);
-            		});
-            	});
-            }
-            else {
+//         }, function (err) {
 
-            	 if (typeof callback === "function") callback(res);
-            }
+//             // console.log("Server error: 'initialize'", err)
 
-        }, function (err) {
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
-            // console.log("Server error: 'run'", err)
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
+//     // }
+//     // catch (err) {
 
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
 
-};
+// };
 
-export var instruct = function (clear, callback) {
 
+// export var run = function (callback) {
 
-    var funcName = "instruct";
 
-    // try {
+//     // console.log("run call input", $input.getInput(true));
 
-        http.post({
-            url:"/evolve/instruct",
-            data:{input:$input.getInput(), clear:clear}
-        })
-        .then(function (res) {
+//     var funcName = "run";
 
-            if (typeof callback === "function") callback(res);
+//     // try {
 
-        }, function (err) {
+//     	http.post({
+//     		url:"/evolve/run",
+//     		data:{input:$input.getInput(true)}
+//     	})
+//     	.then(function (res) {
 
-            // console.log("Server error: 'instruct'", err);
+//             if (!res.data.success) {
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
+//             	initialize(function () {
 
+//             		run(function  () {
+//             			if (typeof callback === "function") callback(res);
+//             		});
+//             	});
+//             }
+//             else {
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
+//             	 if (typeof callback === "function") callback(res);
+//             }
 
-};
+//         }, function (err) {
 
-export var refreshEnvironment = function (callback) {
+//             // console.log("Server error: 'run'", err)
 
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
-    // console.log("refresh environment call get input");
 
+//     // }
+//     // catch (err) {
 
-    var funcName = "refresh environment";
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
-    // try {
+// };
 
+// export var instruct = function (clear, callback) {
 
-        http.post({
-            url:"/trash/environment/refresh",
-            data:{input:$input.getInput()}
-        })
-        .then(function (res) {
 
-            // console.log("refresh response", res.data.env);
+//     var funcName = "instruct";
 
-            if (typeof callback === "function") callback(res);
+//     // try {
 
-        }, function (err) {
+//         http.post({
+//             url:"/evolve/instruct",
+//             data:{input:$input.getInput(), clear:clear}
+//         })
+//         .then(function (res) {
 
-            // console.log("Server error: 'refresh environment'", err)
+//             if (typeof callback === "function") callback(res);
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
+//         }, function (err) {
 
+//             // console.log("Server error: 'instruct'", err);
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
-};
 
-export var resetEnvironment = function (callback) {
+//     // }
+//     // catch (err) {
 
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
-    var funcName = "reset environment";
+// };
 
-    // try {
+// export var refreshEnvironment = function (callback) {
 
-        http.post({
-            url:"/trash/environment/reset",
-            data:{input:$input.getInput()}
-        })
-        .then(function (res) {
 
-            if (typeof callback === "function") callback(res);
+//     // console.log("refresh environment call get input");
 
-        }, function (err) {
 
-            // console.log("Server error: 'reset environment'", err)
+//     var funcName = "refresh environment";
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
+//     // try {
 
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err)
-    // }
+//         http.post({
+//             url:"/trash/environment/refresh",
+//             data:{input:$input.getInput()}
+//         })
+//         .then(function (res) {
 
-};
+//             // console.log("refresh response", res.data.env);
 
+//             if (typeof callback === "function") callback(res);
 
-export var simulate = {
+//         }, function (err) {
 
+//             // console.log("Server error: 'refresh environment'", err)
 
-    trash:function (_input, callback) {
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
-        var funcName = "simulate";
 
+//     // }
+//     // catch (err) {
 
-        // try {
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
-            http.post({
-                url:"/trash/simulate",
-                data:{options:_input, input:$input.getInput()}
-            })
-            .then(function (res) {
+// };
 
-                if (typeof callback === "function") callback(res);
+// export var resetEnvironment = function (callback) {
 
-            }, function (err) {
 
-                // console.log("Server error: 'simulate'", err);
+//     var funcName = "reset environment";
 
-                // return $q.reject(err);
-                throw err;
-            })
-            .catch(exception.catcher(funcName));
+//     // try {
 
+//         http.post({
+//             url:"/trash/environment/reset",
+//             data:{input:$input.getInput()}
+//         })
+//         .then(function (res) {
 
-        // }
-        // catch (err) {
-            
-        //     console.log(funcName, err);
-        // }
-    
+//             if (typeof callback === "function") callback(res);
 
-    },
-    recognize:function (index, callback) {
+//         }, function (err) {
 
+//             // console.log("Server error: 'reset environment'", err)
 
-        var funcName = "simulate";
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
 
-        // try {
 
-            http.post({
-                url:"/recognize/simulate",
-                data:{index:index, input:$input.getInput()}
-            })
-            .then(function (res) {
+//     // }
+//     // catch (err) {
 
-                if (typeof callback === "function") callback(res);
+//     //     console.log("Server error:", funcName, err)
+//     // }
 
-            }, function (err) {
+// };
 
-                // console.log("Server error while running best individual", err);
 
-                // return $q.reject(err);
-                throw err;
-            })
-            .catch(exception.catcher(funcName));
+// export var simulate = {
 
 
-        // }
-        // catch (err) {
-            
-        //     console.log(funcName, err);
-        // }
-    },
-    digit:function (index, callback) {
+//     trash:function (_input, callback) {
 
+//         var funcName = "simulate";
 
-        var funcName = "simulate";
 
-        // try {
+//         // try {
 
-            http.post({
-                url:"/recognize/digit",
-                data:{index:index, input:$input.getInput()}
-            })
-            .then(function (res) {
+//             http.post({
+//                 url:"/trash/simulate",
+//                 data:{options:_input, input:$input.getInput()}
+//             })
+//             .then(function (res) {
 
-                if (typeof callback === "function") callback(res);
+//                 if (typeof callback === "function") callback(res);
 
-            }, function (err) {
+//             }, function (err) {
 
-                // console.log("Server error while running best individual", err);
+//                 // console.log("Server error: 'simulate'", err);
 
-                // return $q.reject(err);
-                throw err;
-            })
-            .catch(exception.catcher(funcName));
+//                 // return $q.reject(err);
+//                 throw err;
+//             })
+//             .catch(exception.catcher(funcName));
 
 
-        // }
-        // catch (err) {
+//         // }
+//         // catch (err) {
 
-        //     console.log(funcName, err);
-        // }
+//         //     console.log(funcName, err);
+//         // }
 
-    }
 
-};
+//     },
+//     recognize:function (index, callback) {
 
 
-export var hardStop = function (callback) {
+//         var funcName = "simulate";
 
+//         // try {
 
-    // console.log("hard stop call get input");
+//             http.post({
+//                 url:"/recognize/simulate",
+//                 data:{index:index, input:$input.getInput()}
+//             })
+//             .then(function (res) {
 
-    var funcName = "hardStop";
+//                 if (typeof callback === "function") callback(res);
 
+//             }, function (err) {
 
-    // try {
+//                 // console.log("Server error while running best individual", err);
 
-    	http.post({
-    		url:"/evolve/hardStop",
-    		data:{input:$input.getInput()}
-    	})
-    	.then(function (res) {
+//                 // return $q.reject(err);
+//                 throw err;
+//             })
+//             .catch(exception.catcher(funcName));
 
-            if (typeof callback === "function") callback(res);
 
-        }, function (err) {
+//         // }
+//         // catch (err) {
 
-            // console.log("Server error: 'hardStop'", err)
+//         //     console.log(funcName, err);
+//         // }
+//     },
+//     digit:function (index, callback) {
 
-            // return $q.reject(err);
-            throw err;
-        })
-        .catch(exception.catcher("Server error:" + funcName));
 
+//         var funcName = "simulate";
 
-    // }
-    // catch (err) {
-        
-    //     console.log("Server error:", funcName, err);
-    // }
-    
+//         // try {
 
-};
+//             http.post({
+//                 url:"/recognize/digit",
+//                 data:{index:index, input:$input.getInput()}
+//             })
+//             .then(function (res) {
+
+//                 if (typeof callback === "function") callback(res);
+
+//             }, function (err) {
+
+//                 // console.log("Server error while running best individual", err);
+
+//                 // return $q.reject(err);
+//                 throw err;
+//             })
+//             .catch(exception.catcher(funcName));
+
+
+//         // }
+//         // catch (err) {
+
+//         //     console.log(funcName, err);
+//         // }
+
+//     }
+
+// };
+
+
+// export var hardStop = function (callback) {
+
+
+//     // console.log("hard stop call get input");
+
+//     var funcName = "hardStop";
+
+
+//     // try {
+
+//     	http.post({
+//     		url:"/evolve/hardStop",
+//     		data:{input:$input.getInput()}
+//     	})
+//     	.then(function (res) {
+
+//             if (typeof callback === "function") callback(res);
+
+//         }, function (err) {
+
+//             // console.log("Server error: 'hardStop'", err)
+
+//             // return $q.reject(err);
+//             throw err;
+//         })
+//         .catch(exception.catcher("Server error:" + funcName));
+
+
+//     // }
+//     // catch (err) {
+
+//     //     console.log("Server error:", funcName, err);
+//     // }
+
+
+// };

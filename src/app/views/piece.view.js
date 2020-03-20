@@ -20,7 +20,7 @@ import '../../assets/css/classes.css';
 
 import * as u from "../services/utility.service";
 import * as state from "../services/state.service";
-import * as api from "../services/api.ws.service";
+import * as api from "../services/api.service";
 import * as data from "../services/data.service";
 
 

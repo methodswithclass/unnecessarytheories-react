@@ -3,6 +3,9 @@ import * as blog from "./models/blog.service";
 import * as file from "./file.service";
 import * as shared from "./shared.service";
 
+
+file.getBlog("contact");
+
 var testOverride = false;
 
 var dev = {
@@ -334,16 +337,39 @@ var blogs = allblogs.filter(function (blog, index, array) {
 
 });
 
-blogs.forEach(function (value, index, array) {
+
+let fromFile = (value, index, array) => {
 
 	value.meta.index = index;
 
-	file.process("/" + value.meta.file, function (blog) {
+	file.process(value.meta.name, "/" + value.meta.file, function (blog) {
 
-		console.log("file", value.meta.file, "blog", blog);
+		// console.log("file", value.meta.file, "blog", blog);
 
 		value.content = blog;
 	});
+}
+
+let fromApi = (value, index, array) => {
+
+	// fromFile(value, index, array);
+
+	value.meta.index = index;
+
+	file.getBlog(value.meta.name)
+	.then(blog => {
+		value.content = blog;
+	})
+}
+
+blogs.forEach(function (value, index, array) {
+
+	// if (value.meta.name == "contact" || value.meta.name == "evolution") {
+		fromApi(value, index, array);
+	// }
+	// else {
+	// 	fromFile(value, index, array);
+	// }
 
 });
 

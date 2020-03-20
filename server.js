@@ -4,9 +4,11 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-var expressWs = require('express-ws')(app);
+// var expressWs = require('express-ws')(app);
 
-const apiRoutes = require("./backend/routes/routes-ws.js");
+// const apiRoutes = require("./backend/routes/routes-ws.js");
+
+const apiRoutes = require("./backend/routes/api.js");
 
 const bot = require("./server/bot");
 const middleware = require("./server/middleware");
@@ -40,6 +42,8 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(express.static(path.join(__dirname, "public")));
 
+
+app.use("/api", apiRoutes);
 
 
 app.use("/url", function (req, res, next) {
